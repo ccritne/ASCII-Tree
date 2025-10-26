@@ -25,4 +25,10 @@ If you have the array you can use `show_tree` and pass (in order):
   - character_transform (for fill number with less digits, default="#")
   - collapsed (if you want a tree collapsed or not, default=False)
 
+## Examples
+Collapsed Random Tree 
+![Collapsed](imgs/collapsed.png)
+
+Not Collapsed Random Tree
+![Not collapsed](imgs/not-collapsed.png)
 
