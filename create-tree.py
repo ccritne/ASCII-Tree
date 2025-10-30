@@ -180,20 +180,23 @@ def get_max_digits_of(A):
   
   return max_digits
 
-character = " "
-character_transform = "#"
-max_digits = 5
+if __name__ == "__main__":
+    character = " "
+    character_transform = "#"
+    max_digits = 5
 
-size = int(input("Size: "))
+    #size = int(input("Size: "))
 
-collapsed = input("Collapsed? (y/n) ").lower()[0] == "y"
+    collapsed = input("Collapsed? (y/n) ").lower()[0] == "y"
 
-A = generate_random_array(size, max_digits) 
-height = math.frexp(size)[1] - 1
+    A = generate_random_array(size, max_digits) 
 
-digits = get_max_digits_of(A)
+    height = math.frexp(len(A))[1] - 1
 
-string_tree = show_tree(A, 0, height, digits, character, character_transform, collapsed)
+    digits = get_max_digits_of(A)
 
-print(string_tree)
-print()
+    string_tree = show_tree(A, 0, height, digits, character, character_transform, collapsed)
+
+    print(string_tree)
+    print()
+
