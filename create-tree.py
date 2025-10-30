@@ -50,7 +50,7 @@ def show_tree_leafs(root, left, right, digits, character="#", character_transfor
 
 def show_tree(A, index, level, digits, character="#", character_transform="#",collapsed=False):
 
-  if level == 1:
+  if level <= 1:
     right_leaf = None
     left_leaf = None
     
