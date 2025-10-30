@@ -7,7 +7,7 @@
 ## Usage
 
 ```bash
-python3 create-tree.py
+python3 create_tree.py
 ```
 
 
