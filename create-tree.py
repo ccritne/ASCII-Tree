@@ -16,7 +16,10 @@ def transform(number, digits, character="#"):
 def show_tree_leafs(root, left, right, digits, character="#", character_transform="#"):
 
   string = character*(digits+1)
-  string += transform(root, digits, character_transform)
+  if root is not None:
+    string += transform(root, digits, character_transform)
+  else:
+    string += character*digits
   string += character*(digits+1) 
   string += "\n"
 
@@ -36,12 +39,12 @@ def show_tree_leafs(root, left, right, digits, character="#", character_transfor
   if left != None:
     string += transform(left, digits, character_transform)
   else:
-    string += character
+    string += character*digits
   string += character*(digits+2) 
   if right != None:
     string += transform(right, digits, character_transform)
   else:
-    string += character
+    string += character*digits
   
   return string
 
@@ -56,46 +59,95 @@ def show_tree(A, index, level, digits, character="#", character_transform="#",co
 
     if right(index) < len(A):
       right_leaf = A[right(index)]
-    
+
     return show_tree_leafs(A[index], left_leaf, right_leaf, digits, character, character_transform)
   
   numbers = 2**level - 1
 
   string = character*(numbers*(digits+1)) 
-  string += transform(A[index], digits, character_transform)
+  
+  if A[index] is not None:
+    string += transform(A[index], digits, character_transform)
+  else:
+    string += character*digits
+
   string += character*(numbers*(digits+1)) + "\n"
  
   low_numbers = 2**(level - 1) - 1
   
+  has_left = left(index) < len(A) and A[left(index)] is not None
+  has_right = right(index) < len(A) and A[right(index)] is not None
+
   if collapsed:
     
     middle_string = character*(numbers*(digits + 1) - 1)
-    middle_string += "/" + character*digits + "\\"
+
+    if has_left:
+      middle_string += "/"
+    else:
+      middle_string += character
+
+    middle_string +=  character*digits
+
+    if has_right:
+        middle_string += "\\"
+    else:
+        middle_string += character
+
     middle_string += character*(numbers*(digits + 1) - 1)
     string += middle_string + "\n"
     
     steps = 2*(low_numbers*(digits+1)) - 2
 
     string += character*((numbers - low_numbers)*(digits + 1))
-    string += "-"*int(steps/2) 
+
+    character_sep = character
+
+    if has_left:
+        character_sep = "-"
+
+    string += character_sep*int(steps/2) 
+
     string += character*(digits + 2)
-    string += "-"*int(steps/2) 
+    
+    character_sep = character
+
+    if has_right:
+        character_sep = "-"
+
+    string += character_sep*int(steps/2) 
     string += character*((numbers - low_numbers)*(digits + 1))
     string += "\n"
 
     string += character*((numbers - low_numbers)*(digits + 1) - 1)
-    string += "/" 
+    
+    if has_left:
+        string += "/" 
+    else:
+        string += character
+
     string += character*(steps + digits + 2)
-    string += "\\"
+    
+    if has_right:
+        string += "\\"
+    else:
+        string += character
+
     string += character*((numbers - low_numbers)*(digits + 1) - 1)
     string += "\n"
 
   else:
     for i in range(1, low_numbers*(digits + 1) + 2):
       string += character*(numbers*(digits+1) - i)
-      string += "/"
+      if has_left:
+        string += "/"
+      else:
+        string += character
       string += character*(digits + (i-1)*2)
-      string += "\\"
+      if has_right:
+        string += "\\"
+      else:
+        string += character
       string += character*(numbers*(digits+1) - i) 
       string += "\n"
 
@@ -123,7 +175,8 @@ def get_max_digits_of(A):
   max_digits = 1
 
   for x in A:
-    max_digits = max(max_digits, len(str(x)))
+    if x is not None:
+      max_digits = max(max_digits, len(str(x)))
   
   return max_digits
 
