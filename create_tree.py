@@ -188,7 +188,7 @@ if __name__ == "__main__":
     character_transform = "#"
     max_digits = 5
 
-    #size = int(input("Size: "))
+    size = int(input("Size: "))
 
     collapsed = input("Collapsed? (y/n) ").lower()[0] == "y"
 
