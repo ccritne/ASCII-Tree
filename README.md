@@ -34,3 +34,6 @@ Collapsed Random Tree
 Not Collapsed Random Tree
 ![Not collapsed](imgs/not-collapsed.png)
 
+BST Collapsed Random Tree  
+![BST Collapsed](imgs/bst-collapsed.png)
+
