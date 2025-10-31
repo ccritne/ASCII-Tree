@@ -10,8 +10,10 @@ def left(i):
 def right(i):
   return 2*(i+1)
 
-def transform(number, digits, character="#"):
-  return character*(digits-(len(str(number)))) + str(number)
+def transform(value, digits, character="#"):
+  color = getattr(value, "color", "\033[0m")
+  number = getattr(value, "key", value)
+  return color + character*(digits-(len(str(number)))) + str(number) + "\033[0m"
 
 def show_tree_leafs(root, left, right, digits, character="#", character_transform="#"):
 
@@ -176,7 +178,8 @@ def get_max_digits_of(A):
 
   for x in A:
     if x is not None:
-      max_digits = max(max_digits, len(str(x)))
+      key = getattr(x, "key", x)
+      max_digits = max(max_digits, len(str(key)))
   
   return max_digits
 
