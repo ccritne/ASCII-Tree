@@ -25,6 +25,8 @@ If you have the array you can use `show_tree` and pass (in order):
   - character_transform (for fill number with less digits, default="#")
   - collapsed (if you want a tree collapsed or not, default=False)
 
+If you have a BST you can pass, in show_tree, `bst_to_arr(create_bst_from_arr(A))` from create_bst module 
+
 ## Examples
 Collapsed Random Tree 
 ![Collapsed](imgs/collapsed.png)
